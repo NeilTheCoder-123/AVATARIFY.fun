@@ -1,15 +1,20 @@
-
+noseX1=0;
+noseY1=0;
 noseX=0;
 noseY=0;
 gogglesX=0;
 gogglesY=0;
 mustacheX=0;
 mustacheY=0;
+hatX=0;
+hatY=0;
 
 
 function preload() {
     goggles=loadImage('https://i.postimg.cc/65fXyWrP/GOGGLES.png');
     mustache=loadImage('https://i.postimg.cc/j2RM9bDW/MUSTACHE.png');
+    hat=loadImage('https://i.postimg.cc/50Wnn47f/image-removebg-preview-51.png');
+    nose=loadImage('https://i.postimg.cc/mrN2KK5s/Clown-Nose.png');
 }
 
 function setup() {
@@ -32,13 +37,16 @@ function gotPoses(results)
   if(results.length > 0)
   {
     console.log(results);
+    noseX1 = results[0].pose.nose.x-15;
+    noseY1 = results[0].pose.nose.y-10;
     noseX = results[0].pose.nose.x;
     noseY = results[0].pose.nose.y;
     gogglesX=results[0].pose.rightEye.x-35;
     gogglesY=results[0].pose.rightEye.y-12;
     mustacheX=results[0].pose.nose.x-40;
     mustacheY=results[0].pose.nose.y+5;
-
+    hatX = results[0].pose.leftEar.x-180;
+    hatY = results[0].pose.leftEar.y-190;
 
 
   }
@@ -50,7 +58,8 @@ function draw() {
   stroke(255,0,0);
   image(goggles,gogglesX,gogglesY,140,50);
   image(mustache,mustacheX,mustacheY,80,40);
-
+  image(hat, hatX, hatY, 250, 250);
+  image(nose, noseX1, noseY1, 30, 30);
 }
 
 function save_img(){    
